@@ -27,7 +27,7 @@ public class AccountServiceImpl implements AccountService {
 
        List<Account> accountList;
        accountList  = accountRepository.findAllByCustomerUserId(userId);
-       if (accountList.isEmpty()) {
+       if (accountList == null || accountList.isEmpty()) {
            throw new ResourceNotFoundException("1000","No valid account found for the user: " + userId);
        }
          return accountList.stream()

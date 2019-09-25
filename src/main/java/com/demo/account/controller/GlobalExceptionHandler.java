@@ -50,7 +50,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(InvalidAccountNumberException.class)
-    public ResponseEntity<ErrorResponse> handleInvalidInvalidAccountNumberException(InvalidAccountNumberException exception
+    public ResponseEntity<ErrorResponse> handleInvalidAccountNumberException(InvalidAccountNumberException exception
             , HttpServletRequest request) {
 
         ErrorResponse errorResponse = ErrorResponse.builder()

@@ -2,8 +2,7 @@ package com.demo.account.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
 
@@ -12,11 +11,18 @@ import java.sql.Date;
 public class Transaction {
     @Id
     private int transactionId;
-    private String accountNumber;
-    private String accountName;
-    private Date transactionDate;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "accountNumber", nullable = false)
+    private Account account;
+
+    private Date valueDate;
+
     private String currencyCode;
+
     private BigDecimal transactionAmount;
+
     private boolean isCredit;
+
     private String transactionNarrative;
 }
