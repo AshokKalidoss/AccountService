@@ -1,6 +1,7 @@
 package com.demo.account.service.impl;
 
 import com.demo.account.dto.AccountDTO;
+import com.demo.account.exception.ResourceNotFoundException;
 import com.demo.account.model.Account;
 import com.demo.account.model.Customer;
 import com.demo.account.repository.AccountRepo;
@@ -22,13 +23,13 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     ModelMapper modelMapper;
 
-    public  List<AccountDTO> getAccounts(String userId) {
+    public  List<AccountDTO> getAccounts(String userId) throws ResourceNotFoundException {
 
-       List<Account> accountList = new ArrayList<>();
+       List<Account> accountList;
        accountList  = accountRepository.findAllByCustomerUserId(userId);
-       /*if (accountList.isEmpty()) {
-           throw new AccountsNotFoundException();
-       }*/
+       if (accountList.isEmpty()) {
+           throw new ResourceNotFoundException("1000","No valid account found for the user: " + userId);
+       }
          return accountList.stream()
                   .map(account -> convertToDto(account))
                   .collect(Collectors.toList());

@@ -9,13 +9,12 @@ import java.sql.Date;
 @Data
 @Entity
 public class Account {
-    @Id
-    private String accountId;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "userId", nullable = false)
     private Customer customer;
 
+    @Id
     private String accountNumber;
 
     private String accountName;

@@ -8,6 +8,7 @@ import javax.persistence.Id;
 @Entity
 @Data
 public class Customer {
+
     @Id
     private String userId;
 
