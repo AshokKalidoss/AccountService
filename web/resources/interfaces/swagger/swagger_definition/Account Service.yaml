@@ -1,0 +1,122 @@
+swagger: '2.0'
+info:
+  description: Account Service API
+  version: '1.0'
+  title: Account Service API Documentation
+  termsOfService: 'urn:tos'
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0'
+host: 'localhost:8080'
+basePath: /api
+tags:
+  - name: accounts-controller
+    description: Accounts Controller
+  - name: transaction-controller
+    description: Transaction Controller
+paths:
+  '/v1/accounts/{accountNumber}/transactions':
+    get:
+      tags:
+        - transaction-controller
+      summary: Get Transactions
+      description: This API retrieves a list of transactions for the account number provided as input.
+      operationId: getTransactionsForAccountUsingGET
+      produces:
+        - application/json
+      parameters:
+        - name: accountNumber
+          in: path
+          description: Account number that will be used to retrieve user's information
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/TransactionDTO'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      deprecated: false
+  '/v1/users/{userId}/accounts':
+    get:
+      tags:
+        - accounts-controller
+      summary: Get Accounts
+      description: This API retrieves a list of accounts for the user id provided as input
+      operationId: getAccountsByUserIdUsingGET
+      produces:
+        - application/json
+      parameters:
+        - name: userId
+          in: path
+          description: User ID that will be used to retrieve accounts
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/AccountDTO'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      deprecated: false
+definitions:
+  AccountDTO:
+    type: object
+    properties:
+      accountBalance:
+        type: number
+      accountName:
+        type: string
+      accountNumber:
+        type: string
+      accountType:
+        type: string
+      balanceDate:
+        type: string
+        format: date-time
+      currencyCode:
+        type: string
+    title: AccountDTO
+  TransactionDTO:
+    type: object
+    properties:
+      accountName:
+        type: string
+      accountNumber:
+        type: string
+      creditAmount:
+        type: number
+      creditDebitFlag:
+        type: string
+      currencyCode:
+        type: string
+      debitAmount:
+        type: number
+      transactionNarrative:
+        type: string
+      valueDate:
+        type: string
+    title: TransactionDTO
