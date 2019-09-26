@@ -6,6 +6,7 @@ import com.demo.account.model.Account;
 import com.demo.account.model.Customer;
 import com.demo.account.repository.AccountRepo;
 import com.demo.account.service.AccountService;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@Slf4j
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
