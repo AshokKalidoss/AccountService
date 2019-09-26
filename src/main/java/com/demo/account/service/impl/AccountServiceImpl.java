@@ -11,6 +11,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +25,8 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    public static final String UI_DATE_PATTERN = "dd/MM/yyyy";
 
     public List<AccountDTO> getAccounts(String userId) throws ResourceNotFoundException {
 
@@ -38,6 +42,13 @@ public class AccountServiceImpl implements AccountService {
 
     private AccountDTO convertEntityToDto(Account account) {
         AccountDTO accountDTO = modelMapper.map(account, AccountDTO.class);
+        accountDTO.setBalanceDate(dateFormatter(account.getBalanceDate()));
         return accountDTO;
     }
+
+    private String dateFormatter(Date valueDate) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(UI_DATE_PATTERN);
+        return simpleDateFormat.format(valueDate);
+    }
+
 }

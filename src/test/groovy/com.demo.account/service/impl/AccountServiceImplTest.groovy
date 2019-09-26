@@ -24,6 +24,7 @@ class AccountServiceImplTest extends Specification {
         def accountList = new ArrayList()
         def account = new Account()
         account.accountNumber = "123456"
+        account.setBalanceDate(new Date(2019,12,12))
         accountList.add(account)
         when:
         def result = accountServiceImpl.getAccounts("123456")

@@ -24,7 +24,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public static final String uiDatePattern = "MMM dd, yyyy";
+    public static final String UI_DATE_PATTERN = "MMM dd, yyyy";
 
     public List<TransactionDTO> getTransactionsForAccount(String accountNumber) {
 
@@ -49,14 +49,8 @@ public class TransactionServiceImpl implements TransactionService {
         return transactionDTO;
     }
 
-    /**
-     * dateFormatter - to format the date as per UI's requirement
-     *
-     * @param valueDate - date retrieved from the repository
-     * @return String
-     */
     private String dateFormatter(Date valueDate) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(uiDatePattern);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(UI_DATE_PATTERN);
         return simpleDateFormat.format(valueDate);
     }
 

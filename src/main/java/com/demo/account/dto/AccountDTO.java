@@ -1,11 +1,13 @@
 package com.demo.account.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AccountDTO {
 
     private String accountNumber;
@@ -14,7 +16,7 @@ public class AccountDTO {
 
     private String accountType;
 
-    private Date balanceDate;
+    private String balanceDate;
 
     private String currencyCode;
 

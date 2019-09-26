@@ -12,6 +12,6 @@ public class Constants {
 
     public static final String USER_ID_REGEX ="[0-9]+";
     public static final int USER_ID_LENGTH = 10;
-    public static final String ACCT_NUM_REGEX ="[0-9 -]+$";
+    public static final String ACCT_NUM_REGEX ="[0-9-]+";
     public static final int ACCT_NUM_LENGTH = 16;
 }

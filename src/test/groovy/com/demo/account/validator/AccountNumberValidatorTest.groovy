@@ -17,7 +17,7 @@ class AccountNumberValidatorTest  extends Specification{
 
     }
 
-    def 'throwns InvalidAccountNumberException when invalid account number is provided'() {
+    def 'throws InvalidAccountNumberException when invalid account number is provided'() {
         when:
         accountNumberValidator.isValid('12-12-12-12-12A',null)
         then:
