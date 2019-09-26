@@ -1,0 +1,64 @@
+{
+	"info": {
+		"_postman_id": "ca9c3d1f-4bf8-4cb9-8401-243e6f4de4ea",
+		"name": "AccountService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Accounts - 200 - Success",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/users/1001/accounts"
+			},
+			"response": []
+		},
+		{
+			"name": "Accounts - 400 - Invalid User Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/users/10010000000/accounts"
+			},
+			"response": []
+		},
+		{
+			"name": "Accounts - 404 - No Account Found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/users/10010/accounts"
+			},
+			"response": []
+		},
+		{
+			"name": "Transactions - 200 - Success",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/accounts/10011001/transactions"
+			},
+			"response": []
+		},
+		{
+			"name": "Transactions - 400 - Invalid Account Number",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/accounts/ABC/transactions"
+			},
+			"response": []
+		},
+		{
+			"name": "Transactions - 404 - No Transactions Found Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/accounts/1001100101-01/transactions"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
