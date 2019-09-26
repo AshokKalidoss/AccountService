@@ -3,7 +3,7 @@ package com.demo.account.exception;
 import lombok.Getter;
 import lombok.Setter;
 
-public class InvalidUserIdException extends RuntimeException{
+public class InvalidUserIdException extends RuntimeException {
 
     @Setter
     @Getter

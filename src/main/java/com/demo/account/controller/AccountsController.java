@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,12 +28,12 @@ import java.util.List;
 public class AccountsController {
 
     @Autowired
-    AccountService accountService;
+    private AccountService accountService;
 
     @GetMapping(value = "/v1/users/{userId}/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @ApiOperation(value = "Get Accounts", response = AccountDTO.class, responseContainer = "List",
-    notes = "This API retrieves a list of accounts for the user id provided as input")
+            notes = "This API retrieves a list of accounts for the user id provided as input")
     @ApiResponses({
             @ApiResponse(code = Constants.HTTP_200, message = "OK"),
             @ApiResponse(code = Constants.HTTP_400, message = "Bad Request"),
@@ -42,12 +41,12 @@ public class AccountsController {
             @ApiResponse(code = Constants.HTTP_500, message = "Internal Server Error")
     })
     public ResponseEntity<List<AccountDTO>> getAccountsByUserId(
-            @ApiParam(name = "userId", value = "User ID that will be used to retrieve accounts", required = true)
+            @ApiParam(name = "userId", value = "User ID that will be used to retrieve accounts")
             @PathVariable("userId") @ValidUserId String userId,
-            final HttpServletRequest request ) {
+            final HttpServletRequest request) {
 
-        log.info("Inside AccountController to retrieve accounts for user: {}",userId);
-        return new ResponseEntity(accountService.getAccounts(userId),HttpStatus.OK);
+        log.info("Inside AccountController to retrieve accounts for user: {}", userId);
+        return new ResponseEntity(accountService.getAccounts(userId), HttpStatus.OK);
     }
 
 

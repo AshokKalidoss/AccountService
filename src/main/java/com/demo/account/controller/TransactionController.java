@@ -1,6 +1,5 @@
 package com.demo.account.controller;
 
-import com.demo.account.dto.AccountDTO;
 import com.demo.account.dto.TransactionDTO;
 import com.demo.account.service.TransactionService;
 import com.demo.account.util.Constants;
@@ -10,7 +9,6 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.validator.internal.IgnoreForbiddenApisErrors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,7 +25,7 @@ import java.util.List;
 public class TransactionController {
 
     @Autowired
-    TransactionService transactionService;
+    private TransactionService transactionService;
 
     @GetMapping(value = "/v1/accounts/{accountNumber}/transactions", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Get Transactions", response = TransactionDTO.class, responseContainer = "List",
@@ -39,11 +37,11 @@ public class TransactionController {
             @ApiResponse(code = Constants.HTTP_500, message = "Internal Server Error")
     })
     public ResponseEntity<List<TransactionDTO>> getTransactionsForAccount(
-            @ApiParam(name = "accountNumber", value = "Account number that will be used to retrieve user's information", required = true)
+            @ApiParam(name = "accountNumber", value = "Account number that will be used to retrieve user's information")
             @PathVariable("accountNumber") @ValidAccountNumber String accountNumber,
             final HttpServletRequest request) {
 
-        log.info("Inside TransactionController to retrieve transactions for the account: {}",accountNumber);
+        log.info("Inside TransactionController to retrieve transactions for the account: {}", accountNumber);
         return new ResponseEntity(transactionService.getTransactionsForAccount(accountNumber)
                 , HttpStatus.OK);
     }
