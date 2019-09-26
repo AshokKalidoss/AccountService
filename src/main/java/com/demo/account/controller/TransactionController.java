@@ -18,7 +18,7 @@ public class TransactionController {
     @Autowired
     TransactionService transactionService;
 
-    @GetMapping("/accounts/{accountNumber}/transactions")
+    @GetMapping("/v1/accounts/{accountNumber}/transactions")
     public ResponseEntity<List<TransactionDTO>> getTransactionsForAccount(
             @PathVariable("accountNumber") @ValidAccountNumber String accountNumber) {
         return new ResponseEntity(transactionService.getTransactionsForAccount(accountNumber)

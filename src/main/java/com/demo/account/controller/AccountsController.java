@@ -22,7 +22,7 @@ public class AccountsController {
     @Autowired
     AccountService accountService;
 
-    @GetMapping("/users/{userId}/accounts")
+    @GetMapping("/v1/users/{userId}/accounts")
     @ResponseBody
     public ResponseEntity<List<AccountDTO>> getAccountsByUserId( @PathVariable("userId") @ValidUserId String userId) {
         return new ResponseEntity(accountService.getAccounts(userId),HttpStatus.OK);
