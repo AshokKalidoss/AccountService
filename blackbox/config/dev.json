@@ -1,0 +1,7 @@
+{
+  "http": {
+    "timeout" : 3000,
+    "base-url": ",",
+    "basePath": "http://localhost:8080"
+  }
+}
