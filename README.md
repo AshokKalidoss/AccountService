@@ -80,10 +80,10 @@ Please note that the application has to be up and running for the blackbox test 
 
 ##### Sample test data to test the APIs from Swagger
 
-| User ID      | Account Numbers|
- ------------- |-------------| -----
-|1001    | 10011001, 10011002, 10011003,10011004
-| 1002     | 10021001, 10021002, 10021003, 10021004
-| 1003 | 10031001, 10031002
-| 1004 | No Accounts
+ User ID      | Account Numbers
+ -------------|-------------------
+1001 | 10011001, 10011002, 10011003,10011004
+1002 | 10021001, 10021002, 10021003, 10021004
+1003 | 10031001, 10031002
+1004 | No Accounts
 
