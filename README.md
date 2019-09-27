@@ -13,6 +13,19 @@ This project provides:
 
 2. Gradle - 5.6.2
 
+## Libraries Used
+
+1. SpringBoot
+
+2. H2 in-memory data base
+
+3. Groovy
+
+4. Spock
+5. Jacoco for code coverage
+
+6. Node and Chai for blackbox testing
+
 ## Steps to Setup
 
 **1. Clone the application**
@@ -63,12 +76,13 @@ After the dependencies are installed, please execute the below command to trigge
 ```bash
 npm test
 ```
+Please note that the application has to be up and running for the blackbox test  cases to run.
 
 ##### Sample test data to test the APIs from Swagger
 
 | User ID      | Account Numbers|
 | ------------- |:-------------:| -----:|
 |1001    | 10011001, 10011002, 10011003,10011004 |
-| 1002     | 10021001, 10021002, 10021003, 10021004      |
-| 1003 | 10031001,  10031002  |
-| 1004 | No Accounts     |
+| 1002     | 10021001, 10021002, 10021003, 10021004|
+| 1003 | 10031001, 10031002|
+| 1004 | No Accounts |
