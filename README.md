@@ -54,7 +54,7 @@ Please find the Swagger documenation for the API at - [Swagger Documentation](ht
 
 The app defines following  APIs.
 
-    GET /api/v1/users/{userId/accounts
+    GET /api/v1/users/{userId}/accounts
 
     POST /api/v1/accounts/{accountNumber}/transactions
 
