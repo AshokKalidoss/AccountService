@@ -1,3 +1,4 @@
+"use strict";
 //During the test the env variable is set to test
 process.env.NODE_ENV = 'dev';
 
@@ -5,7 +6,7 @@ let chai = require('chai');
 let chaiHttp = require('chai-http');
 let should = chai.should();
 const http = require('http')
-const { expect } = require('chai')
+const {expect} = require('chai')
 chai.use(chaiHttp);
 
   describe('/GET Accounts success', () => {
