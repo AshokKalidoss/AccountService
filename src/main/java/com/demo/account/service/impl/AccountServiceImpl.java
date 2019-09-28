@@ -31,6 +31,7 @@ public class AccountServiceImpl implements AccountService {
     public List<AccountDTO> getAccounts(String userId) throws ResourceNotFoundException {
 
         List<Account> accountList;
+        log.info("Invoking repository to fetch the list of accounts for user: {}", userId);
         accountList = accountRepository.findAllByCustomerUserId(userId);
         if (accountList == null || accountList.isEmpty()) {
             throw new ResourceNotFoundException("No valid account found for the user: " + userId, Constants.ACCOUNT_NOT_FOUND_ERRORCODE);

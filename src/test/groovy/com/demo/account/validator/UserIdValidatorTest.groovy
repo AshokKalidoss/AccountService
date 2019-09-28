@@ -18,6 +18,6 @@ class UserIdValidatorTest extends Specification {
         when:
         def result = userIdValidator.isValid('user',null)
         then:
-        thrown InvalidUserIdException
+        result == false
     }
 }

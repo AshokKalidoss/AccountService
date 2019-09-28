@@ -9,6 +9,7 @@ public class Constants {
 
     public static final String ACCOUNT_NOT_FOUND_ERRORCODE = "1000";
     public static final String TRANSACTION_NOT_FOUND_ERRORCODE = "1001";
+    public static final String VALIDATION_ERROR_CODE = "1002";
 
     public static final String USER_ID_REGEX ="[0-9]+";
     public static final int USER_ID_LENGTH = 10;

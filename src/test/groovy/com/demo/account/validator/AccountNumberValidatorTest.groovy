@@ -18,10 +18,12 @@ class AccountNumberValidatorTest  extends Specification{
     }
 
     def 'throws InvalidAccountNumberException when invalid account number is provided'() {
-        when:
-        accountNumberValidator.isValid('12-12-12-12-12A',null)
-        then:
-        thrown InvalidAccountNumberException
+        expect:
+        result == accountNumberValidator.isValid(account_number,null)
+        where:
+        account_number              |  result
+        '12-12-12-12-12A'           |  false
+        'USERS'                     |  false
 
     }
 }

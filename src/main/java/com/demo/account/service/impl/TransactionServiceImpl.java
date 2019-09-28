@@ -6,6 +6,7 @@ import com.demo.account.model.Transaction;
 import com.demo.account.repository.TransactionRepo;
 import com.demo.account.service.TransactionService;
 import com.demo.account.util.Constants;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@Slf4j
 public class TransactionServiceImpl implements TransactionService {
 
     @Autowired
@@ -28,6 +30,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     public List<TransactionDTO> getTransactionsForAccount(String accountNumber) {
 
+        log.info("Invoking repository to fetch the list of transactions for account: {}", accountNumber);
         List<Transaction> transactionList = transactionRepo.findAllByAccountAccountNumber(accountNumber);
         if (transactionList == null || transactionList.isEmpty()) {
             throw new ResourceNotFoundException("No valid transactions found for the account: " + accountNumber, Constants.TRANSACTION_NOT_FOUND_ERRORCODE);

@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 )
 public @interface ValidUserId {
 
-    String message() default "User Id invalid";
+    String message() default "Invalid user id. User Id is a number and must not be greater than 10 digits";
 
     Class<?>[] groups() default {};
 

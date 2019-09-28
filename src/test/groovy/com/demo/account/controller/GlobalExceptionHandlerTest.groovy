@@ -47,7 +47,7 @@ class GlobalExceptionHandlerTest extends Specification{
 
         response.statusCode == HttpStatus.INTERNAL_SERVER_ERROR
         response.body.errorCode == "9001"
-        response.body.errorDescription == "500 InternalError"
+        response.body.errorDescription == "Unexpected Error"
     }
 
     def 'set code and message when handling InvalidUserIdException'() {

@@ -12,7 +12,8 @@ import java.lang.annotation.*;
 )
 public @interface  ValidAccountNumber {
 
-    String message() default "Invalid account number";
+    String message() default "Invalid account number. Account number can contain only numeric digits with an optional '-' symbol" +
+            " and must not exceed 16 characters";
 
     Class<?>[] groups() default {};
 
