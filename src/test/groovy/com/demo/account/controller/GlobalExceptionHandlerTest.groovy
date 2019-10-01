@@ -1,9 +1,10 @@
 package com.demo.account.controller
 
-import com.demo.account.dto.ErrorResponse
+import com.demo.account.exception.ErrorResponse
 import com.demo.account.exception.InvalidAccountNumberException
 import com.demo.account.exception.InvalidUserIdException
 import com.demo.account.exception.ResourceNotFoundException
+import com.demo.account.exception.handler.GlobalExceptionHandler
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.client.HttpServerErrorException

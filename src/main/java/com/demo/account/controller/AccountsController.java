@@ -1,9 +1,8 @@
 package com.demo.account.controller;
 
 import com.demo.account.dto.AccountDTO;
-import com.demo.account.dto.ErrorResponse;
+import com.demo.account.exception.ErrorResponse;
 import com.demo.account.service.AccountService;
-import com.demo.account.util.Constants;
 import com.demo.account.validator.ValidUserId;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -36,10 +35,10 @@ public class AccountsController {
     @ApiOperation(value = "Get Accounts", response = AccountDTO.class, responseContainer = "List",
             notes = "This API retrieves a list of accounts for the user id provided as input")
     @ApiResponses({
-            @ApiResponse(code = Constants.HTTP_200, message = "OK", response = AccountDTO.class, responseContainer = "List"),
-            @ApiResponse(code = Constants.HTTP_400, message = "Bad Request", response = ErrorResponse.class),
-            @ApiResponse(code = Constants.HTTP_404, message = "Not Found", response = ErrorResponse.class),
-            @ApiResponse(code = Constants.HTTP_500, message = "Internal Server Error", response = ErrorResponse.class)
+            @ApiResponse(code = 200, message = "OK", response = AccountDTO.class, responseContainer = "List"),
+            @ApiResponse(code = 400, message = "Bad Request", response = ErrorResponse.class),
+            @ApiResponse(code = 404, message = "Not Found", response = ErrorResponse.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorResponse.class)
     })
     public ResponseEntity<List<AccountDTO>> getAccountsByUserId(
             @ApiParam(name = "userId", value = "User ID that will be used to retrieve accounts", required = true)

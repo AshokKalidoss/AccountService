@@ -1,6 +1,6 @@
-package com.demo.account.controller;
+package com.demo.account.exception.handler;
 
-import com.demo.account.dto.ErrorResponse;
+import com.demo.account.exception.ErrorResponse;
 import com.demo.account.exception.InvalidAccountNumberException;
 import com.demo.account.exception.InvalidUserIdException;
 import com.demo.account.exception.ResourceNotFoundException;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import javax.validation.Validation;
-import javax.validation.ValidationException;
 
-import static com.demo.account.util.Constants.VALIDATION_ERROR_CODE;
+import static com.demo.account.exception.ErrorCode.INTERNAL_SERVER_ERROR;
+import static com.demo.account.exception.ErrorCode.VALIDATION_ERROR;
+
 
 @ControllerAdvice
 @Slf4j
@@ -59,26 +59,15 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleConstraintViolationException(ConstraintViolationException exception
             , HttpServletRequest request) {
 
-        String validationErrorMessage = "Invalid input";
+        String validationErrorMessage = VALIDATION_ERROR.message;
         for (ConstraintViolation constraintViolation : exception.getConstraintViolations()) {
                      validationErrorMessage = constraintViolation.getMessage();
 
         }
 
         ErrorResponse errorResponse = ErrorResponse.builder()
-                .errorCode(VALIDATION_ERROR_CODE)
+                .errorCode(VALIDATION_ERROR.code)
                 .errorDescription(validationErrorMessage)
-                .build();
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(ValidationException.class)
-    public ResponseEntity<ErrorResponse> handleValidationException(Exception exception
-            , HttpServletRequest request) {
-
-        ErrorResponse errorResponse = ErrorResponse.builder()
-                .errorCode(VALIDATION_ERROR_CODE)
-                .errorDescription(exception.getMessage())
                 .build();
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
@@ -88,11 +77,10 @@ public class GlobalExceptionHandler {
             , HttpServletRequest request) {
 
         ErrorResponse errorResponse = ErrorResponse.builder()
-                .errorCode("9001")
-                .errorDescription("Unexpected Error")
+                .errorCode(INTERNAL_SERVER_ERROR.code)
+                .errorDescription(INTERNAL_SERVER_ERROR.message)
                 .build();
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
 
 }

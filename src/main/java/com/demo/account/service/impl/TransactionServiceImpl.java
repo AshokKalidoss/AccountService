@@ -5,7 +5,6 @@ import com.demo.account.exception.ResourceNotFoundException;
 import com.demo.account.model.Transaction;
 import com.demo.account.repository.TransactionRepo;
 import com.demo.account.service.TransactionService;
-import com.demo.account.util.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,8 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.demo.account.exception.ErrorCode.TRANSACTION_NOT_FOUND_ERROR;
 
 @Component
 @Slf4j
@@ -33,7 +34,7 @@ public class TransactionServiceImpl implements TransactionService {
         log.info("Invoking repository to fetch the list of transactions for account: {}", accountNumber);
         List<Transaction> transactionList = transactionRepo.findAllByAccountAccountNumber(accountNumber);
         if (transactionList == null || transactionList.isEmpty()) {
-            throw new ResourceNotFoundException("No valid transactions found for the account: " + accountNumber, Constants.TRANSACTION_NOT_FOUND_ERRORCODE);
+            throw new ResourceNotFoundException(TRANSACTION_NOT_FOUND_ERROR.message + accountNumber, TRANSACTION_NOT_FOUND_ERROR.code);
         }
         return transactionList.stream()
                 .map(transaction -> convertEntityToDto(transaction))

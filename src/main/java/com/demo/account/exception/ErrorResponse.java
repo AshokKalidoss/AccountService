@@ -1,4 +1,4 @@
-package com.demo.account.dto;
+package com.demo.account.exception;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
